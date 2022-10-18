@@ -3,18 +3,19 @@
     { shellHookPre ? ""
     , shellHookPost ? ""
     , buildInputs ? [ ]
-    , prisma-engines ? pkgs.prisma-engines
+    , prismaPackage ? pkgs.nodePackages.prisma
+    , prismaEnginesPackage ? pkgs.prisma-engines
     , ...
     } @ attrs:
     pkgs.mkShell (attrs // {
       buildInputs = with pkgs;
         [
-          nodePackages.prisma
+          prismaPackage
         ]
         ++ buildInputs;
       shellHook =
         let
-          engines = prisma-engines;
+          engines = prismaEnginesPackage;
         in
         shellHookPre
           + ''
