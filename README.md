@@ -49,14 +49,14 @@ Your nix project might use a specific version of node/npm/yarn etc. This can eas
 ```nix
 # flake.nix
 {
-  ...
+  # ...
     devShell = prisma.lib.mkPrismaShell {
       buildInputs = with pkgs; [
         yarn
         nodejs-16_x
       ];
     };
-  ...
+  # ...
 }
 ```
 
@@ -67,7 +67,7 @@ You cannot use the `shellHook` directly, but you can add stuff before or after t
 ```nix
 # flake.nix
 {
-  ...
+  # ...
     devShell = prisma.lib.mkPrismaShell {
       shellHookPre = ''
         echo "setting up prisma shell"
@@ -76,7 +76,7 @@ You cannot use the `shellHook` directly, but you can add stuff before or after t
         echo "ready to use prisma shell"
       '';
     };
-  ...
+  # ...
 }
 ```
 
@@ -87,13 +87,13 @@ The prisma engines and prisma package can easily be overwritten with your own sp
 ```nix
 # flake.nix
 {
-  ...
+  # ...
     devShell = prisma.lib.mkPrismaShell {
       # defaults
       prismaEnginesPackage = pkgs.prisma-engines;
       prismaPackage = pkgs.nodePackages.prisma;
     };
-  ...
+  # ...
 }
 ```
 
